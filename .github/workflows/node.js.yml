@@ -7,6 +7,15 @@ on:
   issue_comment:
     types:
       - created
+  workflow_dispatch:
+    inputs:
+      env:
+        type: choice
+        description: "-Dkarate.env Environment to run tests in"
+        required: true
+        options:
+          - "dev"
+          - "qai"
 
 jobs:
   build:
