@@ -21,4 +21,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event }}
+      - uses: actions/checkout@v3
+      - uses: actions-ecosystem/action-create-comment@v1
+        if: ${{ startsWith(github.event.comment.body, '/hello') }}
+        with:
+          github_token: ${{ github.token }}
+          body: |
+            Hello, @${{ github.actor }}!
