@@ -23,9 +23,10 @@ jobs:
          uses: actions/checkout@v3
          
   reuse-workflow:
-   if: ${{ jobs.build.outputs.sucess }}
+   needs: build
+   if: ${{ needs.build.outputs.sucess }}
    uses: ./.github/workflows/node.js.yml
    with:
-     customer: ${{ jobs.build.outputs.customer }}
-     env: ${{ jobs.build.outputs.env }}
-     tests: ${{ jobs.build.outputs.tests }}
+     customer: ${{ needs.build.outputs.customer }}
+     env: ${{ needs.build.outputs.env }}
+     tests: ${{ needs.build.outputs.tests }}
