@@ -36,14 +36,9 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-#       - uses: actions-ecosystem/action-regex-match@v2
-#         id: regex-match
-#         with:
-#           text: ${{ github.event.comment.body }}
-#           regex: '^/run-test-suite\s*(\w+)\s*(\w+)\s*(\w+)\s*$'
+      - uses: actions/checkout@v3
           
       - uses: actions-ecosystem/action-create-comment@v1
-#         if: ${{ steps.regex-match.outputs.match != '' }}
         with:
           github_token: ${{ github.token }}
           check-only-first-line: true
