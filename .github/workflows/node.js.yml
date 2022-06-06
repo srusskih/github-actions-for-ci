@@ -33,23 +33,22 @@ on:
 
 
 jobs:
-  process_comment:
-    if: ${{ github.event.comment !== null }}
+  run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions-ecosystem/action-regex-match@v2
-        id: regex-match
-        with:
-          text: ${{ github.event.comment.body }}
-          regex: '^/run-test-suite\s*(\w+)\s*(\w+)\s*(\w+)\s*$'
-          
-#       - uses: actions-ecosystem/action-create-comment@v1
-#         if: ${{ steps.regex-match.outputs.match != '' }}
+#       - uses: actions-ecosystem/action-regex-match@v2
+#         id: regex-match
 #         with:
-#           github_token: ${{ github.token }}
-#           check-only-first-line: true
-#           body: |
-#             Hello, 
-#             ${{ steps.regex-match.outputs.group1 }}
-#             ${{ steps.regex-match.outputs.group2 }}
-#             ${{ steps.regex-match.outputs.group3 }}!
+#           text: ${{ github.event.comment.body }}
+#           regex: '^/run-test-suite\s*(\w+)\s*(\w+)\s*(\w+)\s*$'
+          
+      - uses: actions-ecosystem/action-create-comment@v1
+        if: ${{ steps.regex-match.outputs.match != '' }}
+        with:
+          github_token: ${{ github.token }}
+          check-only-first-line: true
+          body: |
+            Hello, 
+            ${{ inputs.tests }}
+            ${{ inputs.customer }}
+            ${{ inputs.env }}!
