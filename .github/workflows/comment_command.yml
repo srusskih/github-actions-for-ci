@@ -8,6 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      tests: ${{ steps.regex-match.outputs.group1 }}
+      customer: ${{ steps.regex-match.outputs.group2 }}
+      env: ${{ steps.regex-match.outputs.group3 }}
     steps:
        - uses: actions-ecosystem/action-regex-match@v2
          id: regex-match
@@ -21,6 +25,6 @@ jobs:
    if: ${{ steps.regex-match.outputs.match != '' }}
    uses: ./.github/workflows/node.js.yml
    with:
-     customer: ${{ steps.regex-match.outputs.group3 }}
-     env: ${{ steps.regex-match.outputs.group2 }}
-     tests: ${{ steps.regex-match.outputs.group1 }}
+     customer: ${{ jobs.build.outputs.customer }}
+     env: ${{ jobs.build.outputs.env }}
+     tests: ${{ jobs.build.outputs.tests }}
