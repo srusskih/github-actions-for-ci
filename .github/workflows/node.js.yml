@@ -30,29 +30,29 @@ on:
         type: string
         description: ""
         required: true
-  workflow_dispatch:
-    inputs:
-      env:
-        type: choice
-        description: "-Dkarate.env Environment to run tests in"
-        required: true
-        options:
-          - "dev"
-          - "qai"
+#   workflow_dispatch:
+#     inputs:
+#       env:
+#         type: choice
+#         description: "-Dkarate.env Environment to run tests in"
+#         required: true
+#         options:
+#           - "dev"
+#           - "qai"
       
-      customer:
-        type: choice
-        description: ""
-        required: true
-        options:
-          - "ALL"
-          - "abs"
-          - "maf"
+#       customer:
+#         type: choice
+#         description: ""
+#         required: true
+#         options:
+#           - "ALL"
+#           - "abs"
+#           - "maf"
       
-      tests:
-        type: string
-        description: ""
-        required: true
+#       tests:
+#         type: string
+#         description: ""
+#         required: true
 
 
 jobs:

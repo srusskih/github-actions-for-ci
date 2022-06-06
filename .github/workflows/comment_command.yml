@@ -14,13 +14,13 @@ jobs:
          with:
            text: ${{ github.event.comment.body }}
            regex: '^/run-test-suite\s*(\w+)\s*(\w+)\s*(\w+)\s*$'
-           
        - if: ${{ steps.regex-match.outputs.match != '' }}
          uses: actions/checkout@v3
-       
-       - if: ${{ steps.regex-match.outputs.match != '' }}
-         uses: ./.github/workflows/node.js.yml
-         with:
-           customer: ${{ steps.regex-match.outputs.group3 }}
-           env: ${{ steps.regex-match.outputs.group2 }}
-           tests: ${{ steps.regex-match.outputs.group1 }}
+         
+  reuse-workflow:
+   if: ${{ steps.regex-match.outputs.match != '' }}
+   uses: ./.github/workflows/node.js.yml
+   with:
+     customer: ${{ steps.regex-match.outputs.group3 }}
+     env: ${{ steps.regex-match.outputs.group2 }}
+     tests: ${{ steps.regex-match.outputs.group1 }}
