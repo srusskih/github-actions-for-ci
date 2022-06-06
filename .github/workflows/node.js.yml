@@ -12,10 +12,22 @@ on:
       env:
         type: choice
         description: "-Dkarate.env Environment to run tests in"
-        required: true
+        required: false
         options:
           - "dev"
           - "qai"
+      
+      customer:
+        type: string
+        description: ""
+        required: true
+
+      
+      tests:
+        type: string
+        description: ""
+        required: true
+
 
 jobs:
   process_comment:
