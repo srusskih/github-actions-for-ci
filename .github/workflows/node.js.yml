@@ -10,26 +10,20 @@ on:
   workflow_call:
     inputs:
       env:
-        type: choice
+        type: string
         description: "-Dkarate.env Environment to run tests in"
         required: true
-        options:
-          - "dev"
-          - "qai"
       
       customer:
-        type: choice
+        type: string
         description: ""
         required: true
-        options:
-          - "ALL"
-          - "abs"
-          - "maf"
       
       tests:
         type: string
         description: ""
         required: true
+
 #   workflow_dispatch:
 #     inputs:
 #       env:
